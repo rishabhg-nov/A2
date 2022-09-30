@@ -1,0 +1,218 @@
+Question 0: 
+
+The reason why MS Excel does not get confused by the newlines is because the newlines are part of the text and they are in quotes. I would use cut to select the right column which has the tweet text. Then I would use tr -d \n to remove the newlines.  
+
+Script started on 2022-09-26 16:31:35-04:00
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+----------------------------------------------------------
+Question 1: 
+----------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ cut -f2,5,6 downloaded_tweets_extend_original_nolf2.tsv | grep "replied_to" |  awk -F'\t'  ' {if ($3 
+ && ($3 != $1)) print $1}' | sort -n | uniq -c | sort  -nr  | head -n 10
+     28 1387010761994682371
+     19 1573800344
+     17 1921951394
+     16 1240682348120866816
+     14 94350709
+     14 940778288871542786
+     11 29447428
+     10 90107770
+     10 1401861298233647106
+      9 4830874006
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+-----------------------------------------------------------
+Question 2:
+------------------------------------------------------------ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ cut -f2,5,6 downloaded_tweets_extend_original_nolf2.tsv | grep "replied_to" |  awk -F'\t'  ' {if ($3 
+ && ($3 != $1)) print $3}' | sort -n | uniq -c | sort  -nr  | head -n 10
+     45 3453306553
+     27 29447428
+     14 1238370241169616897
+     13 1108565574
+     12 19739126
+     11 21525682
+     10 95091601
+     10 48624704
+     10 1462548977367359490
+      9 26217297 
+
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+-----------------------------------------------------------
+Question 3: 
+-----------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | cut -f 2 | sort -n | uniq -c | sort -nr | 
+ head -n 10
+   2065 45379403
+   1678 77726331
+   1641 870244616003403781
+   1582 1028022611324747776
+   1312 711608180535640064
+   1281 139109800
+   1234 177400353
+   1216 832019161454817280
+   1159 29447428
+   1139 1060440219097423872
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+-----------------------------------------------------------
+Question 5:
+-----------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ cut -f 4 downloaded_tweets_extend_nolf2.tsv | tr ',' '\n' | tr -d '"' | grep -v '^$' | tr '[:upper:]'
+' '[:lower:]' | sort | uniq -c | sort -nr | head -n 30
+   2910 ukraine
+   1935 covid19
+   1317 longcovid
+   1140 russia
+    897 followbackfriday
+    895 fbpe
+    794 standwithukraine
+    536 putinhitler
+    491 russian
+    480 omicron
+    450 covid
+    429 breaking
+    426 putin
+    384 auspol
+    384 ableg
+    359 mariupol
+    351 kyiv
+    345 bcpoli
+    340 covidisairborne
+    308 stopputinnow
+    302 pmqs
+    295 partygate
+    285 genocide
+    280 เจ้าแก้มก้อน
+    274 putinwarcriminal
+    273 ottawa
+    263 russiasanctions
+    260 ukrainian
+    260 cdnpoli
+    260 boycottrussia
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+-------------------------------------------------------
+Question 6: 
+---------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ grep "type=retweeted" downloaded_tweets_extend_nolf2.tsv | cut -f 4 |  tr ',' '\n' | tr -d '"' | grep
+p -v '^$' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 30
+   2563 ukraine
+   1334 covid19
+   1151 longcovid
+   1053 russia
+    425 breaking
+    412 russian
+    368 auspol
+    355 omicron
+    329 kyiv
+    319 covid
+    289 mariupol
+    274 เจ้าแก้มก้อน
+    247 standwithukraine
+    246 putin
+    243 ba2
+    239 fluke_natouch
+    220 ukrainian
+    198 pmqs
+    182 partygate
+    182 ableg
+    128 kharkiv
+    125 covidisairborne
+    124 england
+    123 cdnpoli
+    121 โอห์มไง
+    119 anonymous
+    118 insiders
+    116 ukrainerussiawar
+    115 nato
+    114 uk
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+------------------------------------------------------------------------------------
+Question 7: 
+------------------------------------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ grep "type=replied_to" downloaded_tweets_extend_nolf2.tsv | cut -f 4 |  tr ',' '\n' | tr -d '"' | gre
+ep -v '^$' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 30
+    883 fbpe
+    876 followbackfriday
+    429 putinhitler
+    319 standwithukraine
+    291 covid19
+    216 stopputinnow
+    211 russiasanctions
+    207 boycottrussia
+    191 putinwarcriminal
+    181 bcpoli
+    149 ottawa
+    130 bced
+    124 covid19bc
+    121 genocide
+    108 nevervoteconservative
+    107 ukraine
+    106 boycottatp
+    102 longcovid
+    101 onpoli
+     99 covidisairborne
+     92 votefordout
+     86 apartheid
+     84 climatecrisis
+     79 putin
+     73 canada
+     65 cdnpoli
+     64 ukraineinvasion
+     62 n95
+     60 ontario
+     59 maskup
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+----------------------------------------------------------------------------------
+Question 8: 
+----------------------------------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ grep "type=quoted" downloaded_tweets_extend_nolf2.tsv | cut -f 4 |  tr ',' '\n' | tr -d '"' | grep -v
+v '^$' | tr '[:upper:]' '[:lower:]' | sort | uniq -c | sort -nr | head -n 30
+    241 covid19
+    151 standwithukraine
+    140 votefordout
+    124 ableg
+    119 covid19ab
+    115 genocide
+    105 onpoli
+    100 nevervoteconservative
+     93 bcpoli
+     86 covidisairborne
+     85 ukraine
+     78 maskmandate
+     74 ontario
+     68 covid19bc
+     65 maskup
+     64 putin
+     64 bds
+     60 putinhitler
+     59 cdnpoli
+     57 ottawa
+     57 longcovid
+     56 canada
+     54 bced
+     53 covidisnotover
+     53 covid
+     51 omicron
+     49 vote
+     47 putinwarcriminal
+     46 votethemallout2022
+     46 freepalestine
+---------------------------------------------------------------------------------
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ 
+]0;rishabh@sjsu:~/A2[rishabh@sjsu A2]$ exit
+
+Script done on 2022-09-26 16:34:13-04:00
